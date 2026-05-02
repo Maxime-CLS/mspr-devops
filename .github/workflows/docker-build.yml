@@ -45,3 +45,27 @@ jobs:
           # Cache les couches Docker pour accélérer les builds
           cache-from: type=gha
           cache-to: type=gha,mode=max
+  # Job dédié pour Trivy
+  scan:
+    needs: build  # Attend que le job "build" soit terminé
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'mon-application:latest'  # Nom de l'image construite
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+          ignore-unfixed: true  # Ignore les vulnérabilités sans correctif
+          vuln-type: 'os,library'  # Scan uniquement les vulnérabilités OS et bibliothèques
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
