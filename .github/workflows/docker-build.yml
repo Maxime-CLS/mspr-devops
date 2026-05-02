@@ -58,7 +58,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'mon-application:latest'  # Nom de l'image construite
+          image-ref: '${{ secrets.DOCKER_HUB_USERNAME }}/mon-application:latest'  # Nom de l'image construite
           format: 'sarif'
           output: 'trivy-results.sarif'
           severity: 'CRITICAL,HIGH'
