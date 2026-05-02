@@ -1,0 +1,107 @@
+services:
+  # Application Streamlit
+  phc-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: phc-app
+    ports:
+      - "8501:8501"  # Streamlit
+      - "8000:8000"  # Métriques Prometheus
+    volumes:
+      - ./data:/app/data
+      - ./backups:/app/backups
+      - db-data:/app/phc.db
+      - ./phc.db:/app/phc.db
+    env_file: .env
+    depends_on:
+      - ollama
+      - backend
+      - tempo
+      - prometheus
+    networks:
+      - observability
+    restart: unless-stopped
+
+  # Backend FastAPI
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: phc-backend
+    ports:
+      - "8001:8000"
+    depends_on:
+      - ollama
+      - tempo
+    networks:
+      - observability
+    restart: unless-stopped
+
+  # Ollama
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - observability
+    restart: unless-stopped
+
+  # Observabilité
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./src/observability/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - observability
+    restart: unless-stopped
+
+  loki:
+    image: grafana/loki:latest
+    container_name: loki
+    ports:
+      - "3100:3100"
+    networks:
+      - observability
+    restart: unless-stopped
+
+  tempo:
+    image: grafana/tempo:latest
+    container_name: tempo
+    ports:
+      - "3200:3200"
+      - "4317:4317"
+      - "4318:4318"
+    networks:
+      - observability
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    depends_on:
+      - prometheus
+      - loki
+      - tempo
+    networks:
+      - observability
+    restart: unless-stopped
+
+volumes:
+  db-data:
+  grafana-storage:
+  ollama-data:
+
+networks:
+  observability:
+    driver: bridge

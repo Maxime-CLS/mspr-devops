@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: "phc-app"
+    static_configs:
+      - targets: ["phc-app:8000"]
+  - job_name: "phc-backend"
+    static_configs:
+      - targets: ["backend:8000"]

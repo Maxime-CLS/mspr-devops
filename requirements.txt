@@ -1,0 +1,36 @@
+# Application Core
+streamlit==1.28.0
+pandas==2.0.3
+sqlalchemy==2.0.20
+bcrypt==4.0.1
+python-dotenv==1.0.0
+
+# Ollama et LLM
+ollama==0.1.3
+langchain==0.1.0
+langchain-community==0.0.14
+
+# OpenTelemetry (Auto-Instrumentation via CLI)
+opentelemetry-api==1.20.0
+opentelemetry-sdk==1.20.0
+opentelemetry-exporter-otlp==1.20.0
+opentelemetry-instrumentation==0.41b0
+opentelemetry-distro==0.41b0  # Fournit la CLI opentelemetry-instrument
+opentelemetry-instrumentation-sqlite3==0.41b0
+opentelemetry-instrumentation-logging==0.41b0
+opentelemetry-instrumentation-requests==0.41b0
+prometheus-client==0.17.1
+
+# Backend (FastAPI)
+fastapi==0.104.1
+uvicorn==0.23.2
+
+# Tests et Qualité
+pytest==7.4.3
+flake8==6.1.0
+black==23.11.0
+pytest-cov==4.1.0
+
+# Utilitaires
+requests==2.31.0
+python-multipart==0.0.6

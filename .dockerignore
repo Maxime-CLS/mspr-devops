@@ -1,0 +1,118 @@
+# ======================
+# Git
+# ======================
+.git/
+.gitignore
+.github/
+
+# ======================
+# Documentation
+# ======================
+README.md
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+LICENSE
+docs/
+
+# ======================
+# Python
+# ======================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.cache
+*.egg-info/
+*.egg
+.env
+.venv/
+env/
+venv/
+*.pyo
+*.pyd
+
+# ======================
+# IDE et Éditeurs
+# ======================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+.pydevproject
+.nbproject
+.sublime-workspace
+.sublime-project
+
+# ======================
+# Docker
+# ======================
+Dockerfile
+Dockerfile.*
+docker-compose.yml
+docker-compose.override.yml
+.docker/
+
+# ======================
+# SQLite et Données
+# ======================
+*.db
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+phc.db
+backups/
+data/  # Sauf les CSV d'exemple (voir exception ci-dessous)
+!data/*.csv  # Conserve les fichiers CSV d'exemple
+
+# ======================
+# Streamlit
+# ======================
+.streamlit/
+.streamlit.secrets.toml
+
+# ======================
+# Ollama
+# ======================
+.ollama/
+ollama-data/
+
+# ======================
+# OS (Mac/Linux/Windows)
+# ======================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ======================
+# Logs
+# ======================
+*.log
+logs/
+
+# ======================
+# Build et Artifacts
+# ======================
+dist/
+build/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# ======================
+# Autres
+# ======================
+*.bak
+*.tmp
+*.temp
+*~
