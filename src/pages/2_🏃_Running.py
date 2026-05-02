@@ -11,18 +11,18 @@ load_dotenv()
 # =========================
 # ENV VARIABLES
 # =========================
-AGE = os.getenv("AGE")
-GENDER = os.getenv("GENDER")
-HEIGHT = os.getenv("HEIGHT")
-WEIGHT = os.getenv("WEIGHT")
+AGE = 30
+GENDER = "male"
+HEIGHT = 175
+WEIGHT = 75
 
-PACE_TARGET = os.getenv("PACE")
-HEART_RATE_TARGET = os.getenv("HEART_RATE")
-STRIDE_LENGTH_TARGET = os.getenv("STRIDE_LENGTH")
-GROUND_CONTACT_TIME_TARGET = os.getenv("GROUND_CONTACT_TIME")
+PACE_TARGET = 6.30
+HEART_RATE_TARGET = 160
+STRIDE_LENGTH_TARGET = 1.00
+GROUND_CONTACT_TIME_TARGET = 250
 
-HEALTH_RECORD_FILE = os.getenv("HEALTH_RECORD_FILE")
-HEALTH_WORKOUT_FILE = os.getenv("HEALTH_WORKOUT_FILE")
+HEALTH_RECORD_FILE = "data/records_data.csv"
+HEALTH_WORKOUT_FILE = "data/workouts_data.csv"
 
 # =========================
 # OLLAMA CONFIG

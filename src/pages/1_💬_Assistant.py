@@ -6,8 +6,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-NAME = os.getenv("NAME")
-HEALTH_WORKOUT_FILE = os.getenv("HEALTH_WORKOUT_FILE")
+
+NAME = "Runner"
+HEALTH_WORKOUT_FILE = "data/workouts_data.csv"
 
 # -----------------------
 # OLLAMA CONFIG (Docker)

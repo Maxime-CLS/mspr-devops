@@ -19,7 +19,7 @@ ENV PATH="/app/venv/bin:$PATH"
 
 COPY --from=builder /app/venv /app/venv
 COPY . /app/
-RUN ls -l /app/data
+
 EXPOSE 8501
 
 ENTRYPOINT ["/app/venv/bin/python", "-m", "streamlit"]
