@@ -45,6 +45,7 @@ jobs:
           tags: |
             ${{ secrets.DOCKER_HUB_USERNAME }}/mon-application:latest
             ${{ secrets.DOCKER_HUB_USERNAME }}/mon-application:${{ github.sha }}
+          platforms: linux/amd64,linux/arm64
           # Ne pousse pas l'image sur les PR
           push: ${{ github.event_name != 'pull_request' }}
           # Cache les couches Docker pour accélérer les builds
